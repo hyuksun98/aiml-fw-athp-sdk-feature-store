@@ -118,12 +118,9 @@ class FeatureStoreSdk:
         """
         Builds simple sql query for given table and features list
         """
-        col = ""
-        for feature in features:
-            col = col + feature + ", "
-
-        col = col[:-2]
-        query = "select " + col + " from " + trainingjob_name + " ;"
+        col = ", ".join(features)
+        query = f'select {col} from "{trainingjob_name}" ;'
+        
         self.logger.debug("Check Select query--> " + query)
         return query
 
